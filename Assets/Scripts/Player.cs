@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
 
     NavMeshAgent m_navAgent;
     Camera m_mainCam;
-    public Transform m_enemy;
 
     Vector3 m_movePoint;
 
@@ -53,7 +52,7 @@ public class Player : MonoBehaviour
 
         m_time += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Mouse0) && IsCloseToTarget(m_enemy.position, m_attackRange))
+        if (Input.GetKey(KeyCode.Mouse0) && IsCloseToTarget(GameManager.Inst.m_enemy.transform.position, m_attackRange))
         {
             if (m_time > m_attackRate)
             {

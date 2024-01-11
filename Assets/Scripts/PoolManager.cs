@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class PoolManager : MonoBehaviour
@@ -7,7 +8,7 @@ public class PoolManager : MonoBehaviour
     [System.Serializable]
     public class PoolingUnit
     {
-        GameObject m_prefab;
+        public GameObject m_prefab;
         public int m_amount;
         private int m_curAmount;
         public int CurAmount
@@ -22,7 +23,7 @@ public class PoolManager : MonoBehaviour
 
     public int m_defualtAmount = 10;
 
-    public bool m_canExpand = true;    
+    public bool m_canExpand = true;
 
     private void Awake()
     {
@@ -43,4 +44,70 @@ public class PoolManager : MonoBehaviour
         }
     }
 
+    public GameObject Get(int i)
+    {
+        GameObject selectedObj = null;
+
+        foreach (GameObject obj in m_poolList[i])
+        {
+            if(!obj.activeSelf)
+            {
+                selectedObj = obj;
+                selectedObj.SetActive(true);
+                break;
+            }
+        }
+
+        if(selectedObj == null)
+        {
+            selectedObj = Instantiate(m_poolingUnits[i].m_prefab, transform);
+            m_poolList[i].Add(selectedObj);
+        }
+
+        return selectedObj;
+    }
+
+    //void AddToPooledUnitList(int i, GameObject newItem)
+    //{
+    //    newItem.SetActive(false);
+
+    //    newItem.transform.parent = transform;
+
+    //    m_poolList[i].Add(newItem);
+    //}
+
+    //GameObject Get(string pooledObjName)
+    //{
+    //    for(int i = 0; i < m_poolingUnits.Length; i++)
+    //    {
+    //        if (m_poolingUnits[i].m_prefab.name == pooledObjName)
+    //        {
+    //            int listIndex;
+
+    //            for (listIndex = 0; listIndex < m_poolList[i].Count; listIndex++)
+    //            {
+    //                if (m_poolList[i][listIndex] == null)
+    //                {
+    //                    return null;
+    //                }
+
+    //                if (m_poolList[i][listIndex].activeInHierarchy == false)
+    //                {
+    //                    return m_poolList[i][listIndex];
+    //                }
+    //            }
+
+    //            if (m_canExpand)
+    //            {
+    //                GameObject tmp = (GameObject)Instantiate(m_poolingUnits[i].m_prefab);
+
+    //                AddToPooledUnitList(i, tmp);
+
+    //                return tmp;
+    //            }
+    //            break;
+    //        }
+    //    }
+    //    return null;
+    //}
 }

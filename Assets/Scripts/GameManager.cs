@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public Player m_player;
     public Enemy m_enemy;
+    public PoolManager m_pool;
+    public Spawner m_spawner;
 
     private void Awake()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemData : ScriptableObject
 {
-    public enum ItemType { Weapon, DefensiveGear, Consumable }
+    public enum ItemType { Weapon, DefensiveGear, Consumable, Gold }
     public ItemType m_itemType;
 
     public string m_itemName;
@@ -34,4 +34,11 @@ public class ConsumableData : ItemData
     public ConsumableType m_consumType;
 
     public int m_amount;
+}
+
+
+public class GoldData : ItemData
+{
+    public int m_minGold;
+    public int m_maxGold;
 }
