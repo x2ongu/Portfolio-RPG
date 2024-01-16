@@ -37,6 +37,7 @@ public class StateManager : FSM<StateManager>
 
     private void Update()    { FSMUpdate(); }
 
+
     public bool IsCloseToTarget(Vector3 targetPos, float range)
     {
         float dist = Vector3.SqrMagnitude(transform.position - targetPos);

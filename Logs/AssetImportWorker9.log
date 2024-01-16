@@ -1,0 +1,426 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.16f1 (d2c21f0ef2f1) revision 13812255'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22621) 64bit Core' Language: 'ko' Physical Memory: 16068 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.16f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker9
+-projectPath
+C:/UnityProject/Portpolio_RPG
+-logFile
+Logs/AssetImportWorker9.log
+-srvPort
+51201
+Successfully changed project path to: C:/UnityProject/Portpolio_RPG
+C:/UnityProject/Portpolio_RPG
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [20492] Host "[IP] 192.168.45.252 [Port] 0 [Flags] 2 [Guid] 2609964938 [EditorId] 2609964938 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-FKOCDSU) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [20492] Host "[IP] 192.168.45.252 [Port] 0 [Flags] 2 [Guid] 2609964938 [EditorId] 2609964938 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-FKOCDSU) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
+Refreshing native plugins compatible for Editor in 2.46 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.16f1 (d2c21f0ef2f1)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.16f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/UnityProject/Portpolio_RPG/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 2050 (ID=0x25a9)
+    Vendor:   NVIDIA
+    VRAM:     3993 MB
+    Driver:   30.0.15.1228
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.16f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.16f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.16f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56836
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.16f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.16f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.004161 seconds.
+- Loaded All Assemblies, in  0.359 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 199 ms
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.473 seconds
+Domain Reload Profiling: 832ms
+	BeginReloadAssembly (128ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (31ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (45ms)
+	LoadAllAssembliesAndSetupDomain (146ms)
+		LoadAssemblies (129ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (143ms)
+			TypeCache.Refresh (142ms)
+				TypeCache.ScanAssembly (127ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (474ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (425ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (281ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (99ms)
+			ProcessInitializeOnLoadMethodAttributes (40ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.416 seconds
+Refreshing native plugins compatible for Editor in 0.92 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.492 seconds
+Domain Reload Profiling: 907ms
+	BeginReloadAssembly (122ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (17ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (227ms)
+		LoadAssemblies (227ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (70ms)
+			TypeCache.Refresh (59ms)
+				TypeCache.ScanAssembly (48ms)
+			ScanForSourceGeneratedMonoScriptInfo (8ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (492ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (372ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (21ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (46ms)
+			ProcessInitializeOnLoadAttributes (280ms)
+			ProcessInitializeOnLoadMethodAttributes (17ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 1.56 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1591 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 35 unused Assets / (128.5 KB). Loaded Objects now: 2061.
+Memory consumption went from 96.7 MB to 96.6 MB.
+Total: 4.105100 ms (FindLiveObjects: 0.163100 ms CreateObjectMapping: 0.062900 ms MarkObjects: 3.693400 ms  DeleteObjects: 0.184500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/CopyMaterialParameter.cs: 60e002c4555e361d0753964b04564015 -> 
+  custom:CustomObjectIndexerAttribute: 43b350a4d6e6d1791af0b5038c4bea17 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/RemoveUnusedMaterialProperties.cs: a7d4bd13d48d6a82a97322f0c6834f97 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/UTS2GUI.cs: 54cfe06be42dca97ca4d033101eef952 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:scripting/monoscript/fileName/RemoveUnusedShaderKeywordsFromUTS2Material.cs: 7cdca1940c966142c15c724bbc7ee1d5 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 369508.022860 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Environments/SM_Env_Dock_01.prefab
+  artifactKey: Guid(db8d0616d60ffdb42842cf3aea878066) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Environments/SM_Env_Dock_01.prefab using Guid(db8d0616d60ffdb42842cf3aea878066) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0bde5dfce1585ba76621235d1e26132e') in 0.099957 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Environments/SM_Env_Port_Boat_Tie_01.prefab
+  artifactKey: Guid(2da28168743016746b5df127f2837a4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Environments/SM_Env_Port_Boat_Tie_01.prefab using Guid(2da28168743016746b5df127f2837a4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98680fbec04d5957753d7caa85ba0f44') in 0.019831 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 1.275457 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Environments/SM_Env_Road_Cross_01.prefab
+  artifactKey: Guid(e1573fe8f21982d4094eadc2e21d3ece) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Environments/SM_Env_Road_Cross_01.prefab using Guid(e1573fe8f21982d4094eadc2e21d3ece) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dfa87dd58d7ce545f7699f68b8c3482e') in 0.171840 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 1.715494 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Weapons/SM_Wep_Pan_01.prefab
+  artifactKey: Guid(3e423096e91b7cb4880f4621cd70d11a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Weapons/SM_Wep_Pan_01.prefab using Guid(3e423096e91b7cb4880f4621cd70d11a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44ec377b1d591804472df2572ab268f8') in 0.016960 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Weapons/SM_Wep_Pistol_Bullet_01.prefab
+  artifactKey: Guid(9643aebe3b164bc4cae610a164fe007a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Weapons/SM_Wep_Pistol_Bullet_01.prefab using Guid(9643aebe3b164bc4cae610a164fe007a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5adf6b759322cfbe1242898115cb60b5') in 0.016417 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Weapons/SM_Wep_Pistol_Ammo_Pile_01.prefab
+  artifactKey: Guid(f2b73a5ff7f548340ba0a4ffd857859c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Weapons/SM_Wep_Pistol_Ammo_Pile_01.prefab using Guid(f2b73a5ff7f548340ba0a4ffd857859c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fbb070dfa8f39abb24d96fff5c90495b') in 0.015707 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 3.958207 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Bike_01.prefab
+  artifactKey: Guid(f80118c48fd56b44eb7776ff08001ba9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Bike_01.prefab using Guid(f80118c48fd56b44eb7776ff08001ba9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a514ba551adb31ba02b6a3334d4efd23') in 0.032973 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 34
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Boat_01.prefab
+  artifactKey: Guid(70fd0bd89e9f9144b982ec327a051c90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Boat_01.prefab using Guid(70fd0bd89e9f9144b982ec327a051c90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '066b26aea66822833c97d038e664a3de') in 0.026070 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 19
+========================================================================
+Received Import Request.
+  Time since last request: 0.000135 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Buggy_Destroyed_01.prefab
+  artifactKey: Guid(1cef8c6dc686a9342896c1e222d176fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Buggy_Destroyed_01.prefab using Guid(1cef8c6dc686a9342896c1e222d176fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '10865de982306e1936c58b236589b443') in 0.020915 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Buggy_01.prefab
+  artifactKey: Guid(90a858f72a2fe1642a597df2b78b0b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Buggy_01.prefab using Guid(90a858f72a2fe1642a597df2b78b0b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c1dea25f2f5fa76c9b9f9243b4eeb58') in 0.029448 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 39
+========================================================================
+Received Import Request.
+  Time since last request: 0.615043 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Generic/SM_Env_Bush_03.prefab
+  artifactKey: Guid(51803f22817ba224297a8f4dc1585284) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Generic/SM_Env_Bush_03.prefab using Guid(51803f22817ba224297a8f4dc1585284) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '117c3dd085386636dbb1eb464771c09f') in 0.039325 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Generic/SM_Generic_Cloud_04.prefab
+  artifactKey: Guid(db02055f97a9502429d3f861901af9c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Generic/SM_Generic_Cloud_04.prefab using Guid(db02055f97a9502429d3f861901af9c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b4df6cb6bcb9deb8829618783d428f9') in 0.040916 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Generic/SM_Generic_Cloud_03.prefab
+  artifactKey: Guid(e227af17bf4ea264d8d32b9f0fcda421) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Generic/SM_Generic_Cloud_03.prefab using Guid(e227af17bf4ea264d8d32b9f0fcda421) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3814db22800829268c84deec9631376b') in 0.030007 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 2.955377 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Environments/SM_Env_Beach_Staight_02.prefab
+  artifactKey: Guid(a900a769f8a4af141813881cb1eb838c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Environments/SM_Env_Beach_Staight_02.prefab using Guid(a900a769f8a4af141813881cb1eb838c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '362885e256a6a66fb4abe183de1396a5') in 0.078662 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Environments/SM_Env_Bridge_02.prefab
+  artifactKey: Guid(37141140a7d94c849a14e9e39fd9e95e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Environments/SM_Env_Bridge_02.prefab using Guid(37141140a7d94c849a14e9e39fd9e95e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8fedcf611dea1f47f2335e6c59e2310c') in 0.022895 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 4.220663 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Plane_Destroyed_01.prefab
+  artifactKey: Guid(079dc7324bc7318429080ce63b769236) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Plane_Destroyed_01.prefab using Guid(079dc7324bc7318429080ce63b769236) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c4a62f5eea8d11757c4ce86bea886e6') in 0.129885 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 34
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Tank_USA_01.prefab
+  artifactKey: Guid(c67acd4846ba1774589d2830ac38c5de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Prefabs/Vehicles/SM_Veh_Tank_USA_01.prefab using Guid(c67acd4846ba1774589d2830ac38c5de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ead5e041692560a84c5e80a953e409a1') in 0.095933 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 121
+========================================================================
+Received Import Request.
+  Time since last request: 5.347286 seconds.
+  path: Assets/PolygonBattleRoyale/Models/SM_Bld_House_02.fbx
+  artifactKey: Guid(7d544dc08cd4dcc4e8329b1eb3d3260f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Models/SM_Bld_House_02.fbx using Guid(7d544dc08cd4dcc4e8329b1eb3d3260f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41f09c8d8e158b345072a8daf3b3b8db') in 0.138125 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 27
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/PolygonBattleRoyale/Models/SM_Bld_SmallBuilding_01.fbx
+  artifactKey: Guid(1c14ac8aeaf77914b8d82523ae153a4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Models/SM_Bld_SmallBuilding_01.fbx using Guid(1c14ac8aeaf77914b8d82523ae153a4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0957bd3bb1fb32a44f513b5c598e2595') in 0.034869 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 17
+========================================================================
+Received Import Request.
+  Time since last request: 3.626668 seconds.
+  path: Assets/PolygonBattleRoyale/Materials/PolygonBattleRoyale_03_A.mat
+  artifactKey: Guid(97a96693c2c6e934cb4c090fe8d0d36c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Materials/PolygonBattleRoyale_03_A.mat using Guid(97a96693c2c6e934cb4c090fe8d0d36c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d23a9e031d0f9ce45d4b7118bf6c9de') in 0.039748 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/PolygonBattleRoyale/Materials/PolygonBattleRoyale_Wep_01.mat
+  artifactKey: Guid(931a8223b8cb7e449bd50e42d6c0a2d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PolygonBattleRoyale/Materials/PolygonBattleRoyale_Wep_01.mat using Guid(931a8223b8cb7e449bd50e42d6c0a2d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'faa42fa05b8d89f8514262d3a4f3cdf3') in 0.035276 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  5.924 seconds
+Refreshing native plugins compatible for Editor in 3.51 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in 12.149 seconds
+Domain Reload Profiling: 18068ms
+	BeginReloadAssembly (616ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (23ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (173ms)
+	RebuildCommonClasses (88ms)
+	RebuildNativeTypeToScriptingClass (32ms)
+	initialDomainReloadingComplete (85ms)
+	LoadAllAssembliesAndSetupDomain (5097ms)
+		LoadAssemblies (5398ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (26ms)
+			TypeCache.Refresh (14ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (12151ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1310ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (70ms)
+			SetLoadedEditorAssemblies (15ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (162ms)
+			ProcessInitializeOnLoadAttributes (989ms)
+			ProcessInitializeOnLoadMethodAttributes (57ms)
+			AfterProcessingInitializeOnLoad (17ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (17ms)
+Refreshing native plugins compatible for Editor in 1.43 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1580 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 16 unused Assets / (98.3 KB). Loaded Objects now: 2120.
+Memory consumption went from 96.5 MB to 96.4 MB.
+Total: 3.829700 ms (FindLiveObjects: 0.150500 ms CreateObjectMapping: 0.040500 ms MarkObjects: 3.579500 ms  DeleteObjects: 0.057700 ms)
+
+Prepare: number of updated asset objects reloaded= 2
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/CopyMaterialParameter.cs: 60e002c4555e361d0753964b04564015 -> 
+  custom:CustomObjectIndexerAttribute: 43b350a4d6e6d1791af0b5038c4bea17 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:scripting/monoscript/fileName/RemoveUnusedMaterialProperties.cs: a7d4bd13d48d6a82a97322f0c6834f97 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/UTS2GUI.cs: 54cfe06be42dca97ca4d033101eef952 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:scripting/monoscript/fileName/RemoveUnusedShaderKeywordsFromUTS2Material.cs: 7cdca1940c966142c15c724bbc7ee1d5 -> 

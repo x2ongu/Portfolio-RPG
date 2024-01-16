@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public ItemData m_itemData;
 
+    InteractionManager m_interManager;
     NavMeshAgent m_navAgent;
     Camera m_mainCam;
 
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        m_interManager = GetComponent<InteractionManager>();
         m_navAgent = GetComponent<NavMeshAgent>();
         m_navAgent.speed = m_speed;
         m_mainCam = Camera.main;
@@ -40,7 +42,7 @@ public class Player : MonoBehaviour
         {
             Ray ray = m_mainCam.ScreenPointToRay(Input.mousePosition);
 
-            Debug.DrawRay(ray.origin, ray.direction * 10f, Color.red);
+            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red);
 
             if (Physics.Raycast(ray, out RaycastHit raycastHit))
             {
@@ -52,13 +54,24 @@ public class Player : MonoBehaviour
 
         m_time += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Mouse0) && IsCloseToTarget(GameManager.Inst.m_enemy.transform.position, m_attackRange))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             if (m_time > m_attackRate)
             {
-                GameManager.Inst.m_enemy.TakeDamage(m_damage);
+                GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
+                for (int i = 0; i < enemy.Length; i++)
+                {
+                    if (IsCloseToTarget(enemy[i].transform.position, m_attackRange))
+                        enemy[i].GetComponent<Enemy>().TakeDamage(m_damage);
+                }
+
                 m_time = 0f;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            m_interManager.InteractWithNPC();
         }
     }
 

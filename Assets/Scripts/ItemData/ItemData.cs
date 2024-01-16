@@ -10,6 +10,11 @@ public class ItemData : ScriptableObject
     public string m_itemName;
     [TextArea]
     public string m_itemDesc;
+
+    public virtual void WhenTheItemDrops()
+    {
+
+    }
 }
 
 [CreateAssetMenu(fileName = "Weapon", menuName = "Items/Weapon")]
@@ -17,6 +22,11 @@ public class WeaponData : ItemData
 {
     public int m_damage;
     public float m_attackSpeed;
+
+    public override void WhenTheItemDrops()
+    {
+        Debug.Log(m_itemName + "¿ª »πµÊ«œºÃΩ¿¥œ¥Ÿ!");
+    }
 }
 
 public class DefensiveGearData : ItemData
@@ -36,9 +46,16 @@ public class ConsumableData : ItemData
     public int m_amount;
 }
 
-
+[CreateAssetMenu(fileName = "Gold", menuName = "Items/Gold")]
 public class GoldData : ItemData
 {
     public int m_minGold;
     public int m_maxGold;
+    private int m_gold;
+
+    public override void WhenTheItemDrops()
+    {
+        m_gold = Random.Range(m_minGold, m_maxGold);
+        Debug.Log(m_itemName + " " + m_gold + "∏¶ »πµÊ«œºÃΩ¿¥œ¥Ÿ!");
+    }
 }

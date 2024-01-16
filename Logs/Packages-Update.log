@@ -58,3 +58,11 @@ The following packages were updated:
   com.unity.ide.rider from version 3.0.21 to 3.0.26
   com.unity.ide.visualstudio from version 2.0.18 to 2.0.22
   com.unity.timeline from version 1.4.8 to 1.7.6
+
+=== Thu Jan 11 12:49:26 2024
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.rider from version 3.0.26 to 3.0.27

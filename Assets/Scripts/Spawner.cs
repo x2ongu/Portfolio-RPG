@@ -6,32 +6,30 @@ using UnityEngine.UIElements;
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    private Transform[] m_spawnPoint;
-    public List<Transform> m_tempList;
-    private List<int> m_availableNum;
+    private Transform[] m_spawnPoints;
+    public List<Transform> m_spawnPointList = new List<Transform>();
 
     private void Awake()
     {
-        m_spawnPoint = GetComponentsInChildren<Transform>();
-        m_tempList = new List<Transform>(m_spawnPoint);
+        m_spawnPoints = GetComponentsInChildren<Transform>();
+        m_spawnPointList.AddRange(m_spawnPoints);
     }
 
     private void Start()
     {
-        for(int i = 0; i < 3; i++)
-        {
-            Spawn();
-        }
+        Spawn();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //if (m_spawnPoint.Length <= 1)
-            //    return;
-
-                Spawn();
+            if (m_spawnPointList.Count == 1)
+            {
+                Debug.Log("No available spawn points.");
+                return;
+            }
+            Spawn(3);
         }
     }
 
@@ -39,12 +37,28 @@ public class Spawner : MonoBehaviour
     {
         GameObject enemy = GameManager.Inst.m_pool.Get(0);
 
-        int num = Random.Range(1, m_spawnPoint.Length);
+        enemy.SetActive(true);
 
-        enemy.transform.position = m_spawnPoint[num].position;
+        int num = Random.Range(1, m_spawnPointList.Count);
 
-        enemy.GetComponent<StateManager>().m_spawnPoint = m_spawnPoint[num];
+        Transform spawnPoint = m_spawnPointList[num];
+
+        enemy.transform.position = spawnPoint.position;
+
+        enemy.GetComponent<Enemy>().m_spawnPoint = spawnPoint;
+
+        enemy.GetComponent<StateManager>().m_spawnPoint = spawnPoint;
 
         enemy.GetComponent<StateManager>().m_target = GameManager.Inst.m_player.transform;
+
+        m_spawnPointList.RemoveAt(num);
+    }
+
+    void Spawn(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Spawn();
+        }
     }
 }
