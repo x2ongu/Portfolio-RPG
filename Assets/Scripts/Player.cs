@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
-    public ItemData m_itemData;
-
+    Animator m_anim;
     InteractionManager m_interManager;
     NavMeshAgent m_navAgent;
     Camera m_mainCam;
@@ -15,6 +14,10 @@ public class Player : MonoBehaviour
 
     [SerializeField, Header("캐릭터 이동속도")]
     private float m_speed = 5f;
+    [SerializeField, Header("구르기 이동속도")]
+    private float m_rollSpeed = 15f;
+    [SerializeField, Header("구르기 이동거리")]
+    private float m_rollDist = 10f;
     [SerializeField, Header("캐릭터 공격력")]
     private float m_damage = 5f;
     private float m_attackRange = 5;
@@ -24,11 +27,14 @@ public class Player : MonoBehaviour
     private int m_maxHp = 100;
     private int m_curHp;
 
+    private bool m_isMove = true;
+
     public float Damage { get { return m_damage; } set { m_damage = value; } }
     public int HP { get { return m_curHp; } set { m_curHp = value; } }
 
     private void Awake()
     {
+        m_anim = GetComponentInChildren<Animator>();
         m_interManager = GetComponent<InteractionManager>();
         m_navAgent = GetComponent<NavMeshAgent>();
         m_navAgent.speed = m_speed;
@@ -38,7 +44,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.Mouse1) && m_isMove)
         {
             Ray ray = m_mainCam.ScreenPointToRay(Input.mousePosition);
 
@@ -47,8 +53,15 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit raycastHit))
             {
                 m_movePoint = raycastHit.point;
-                //Debug.Log("movePoint : " + m_movePoint.ToString());
-                //Debug.Log("맞은 객체 : " + raycastHit.transform.name);
+
+                if (Vector3.Distance(transform.position, m_movePoint) > 0.1f)
+                {                    
+                    m_navAgent.SetDestination(m_movePoint);
+                    m_anim.SetFloat("Speed", m_speed);
+
+                    if (m_navAgent.remainingDistance <= m_navAgent.stoppingDistance)
+                        m_anim.SetFloat("Speed", 0f);
+                }
             }
         }
 
@@ -73,14 +86,23 @@ public class Player : MonoBehaviour
         {
             m_interManager.ReturnSelectedNPC();
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(Roll());
+        }
     }
 
     private void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, m_movePoint) > 0.1f)
-        {
-            m_navAgent.SetDestination(m_movePoint);
-        }
+        //if (Vector3.Distance(transform.position, m_movePoint) > 0.1f)
+        //{
+        //    m_anim.SetFloat("Speed", m_speed);
+        //    m_navAgent.SetDestination(m_movePoint);
+
+        //    if (m_navAgent.remainingDistance <= m_navAgent.stoppingDistance)
+        //        m_anim.SetFloat("Speed", 0f);
+        //}
     }
 
     public void TakeDamage(float damage)
@@ -98,5 +120,32 @@ public class Player : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    IEnumerator Roll()
+    {
+        Ray ray = m_mainCam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit raycastHit))
+        {
+            m_navAgent.ResetPath();
+            m_movePoint = raycastHit.point;
+        }
+
+        Vector3 dir = m_movePoint - transform.position;
+        Vector3 dest = transform.position + dir.normalized * m_rollDist;
+
+        m_navAgent.SetDestination(dest);
+        m_navAgent.speed = m_rollSpeed;
+        m_anim.SetTrigger("Roll");
+        m_isMove = false;
+
+        // 캐릭터 경직, 피격, 상태이상 면역 코드 추가 해야함
+
+        yield return new WaitForSeconds(1f);
+
+        m_navAgent.speed = m_speed;
+        m_anim.SetFloat("Speed", 0f);
+        m_isMove = true;
     }
 }

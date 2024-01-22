@@ -42,6 +42,6 @@ public class Zoom : MonoBehaviour
         m_curCamIndex = newIndex;
 
         // Virtual Camera의 Active를 켜고 끄면서 전환되는 화면 속도를 조절
-        CinemachineCore.Instance.GetActiveBrain(0).m_DefaultBlend.m_Time = m_zoomSpeed;        
+        CinemachineCore.Instance.GetActiveBrain(0).m_DefaultBlend.m_Time = m_zoomSpeed;
     }
 }
