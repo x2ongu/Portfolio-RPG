@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            m_interManager.InteractWithNPC();
+            m_interManager.ReturnSelectedNPC();
         }
     }
 

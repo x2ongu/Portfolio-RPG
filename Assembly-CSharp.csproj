@@ -61,11 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\EnemyState\StateAttack.cs" />
-    <Compile Include="Assets\Scripts\ItemController.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PoolManager.cs" />
-    <Compile Include="Assets\Scripts\NPC.cs" />
     <Compile Include="Assets\Scripts\EnemyState\StateStay.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\FSM\IFSMState.cs" />
@@ -77,10 +75,15 @@
     <Compile Include="Assets\Scripts\EnemyState\StateDie.cs" />
     <Compile Include="Assets\Scripts\ItemData\ConsumableData.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Scripts\NPC\MainQuestNPC.cs" />
     <Compile Include="Assets\Scripts\ItemData\DefensiveGearData.cs" />
     <Compile Include="Assets\Scripts\EnemyState\StateManager.cs" />
     <Compile Include="Assets\Scripts\FSM\FSMSingleton.cs" />
+    <Compile Include="Assets\Scripts\NPC\EquipmentMerchant.cs" />
+    <Compile Include="Assets\Scripts\NPC\ItemMerchant.cs" />
     <Compile Include="Assets\Scripts\InteractionManager.cs" />
+    <Compile Include="Assets\Scripts\NPC\RepaetQuestNPC.cs" />
+    <Compile Include="Assets\Scripts\NPC\NPC.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

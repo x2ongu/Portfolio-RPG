@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class InteractionManager : MonoBehaviour
 {
-    NPC m_npc;
     public GameObject m_nearestObj;
-    public NPCType m_npcType;
+
+    private INPC m_iNpc; 
 
     public float m_npcInterRad = 5f;    // NPC Interaction Radius
     public float m_teleInterRad = 2f;   // Teleport Interaction Radius(맵 이동시 필요한건데 일단 나중을 위해)
@@ -23,23 +23,13 @@ public class InteractionManager : MonoBehaviour
         }
     }
 
-    public void InteractWithNPC()
+    public void ReturnSelectedNPC()
     {
-        switch (m_npcType)
-        {
-            case NPCType.MainQuestNPC:
-                Debug.Log("메인퀘스트 입니다.");
-                break;
-            case NPCType.RepaetQuestNPC:
-                Debug.Log("반복퀘스트 입니다.");
-                break;
-            case NPCType.EquipmentMerchant:
-                Debug.Log("장비상인 입니다.");
-                break;
-            case NPCType.ItemMerchant:
-                Debug.Log("잡화상인 입니다.");
-                break;
-        }
+        if (m_nearestObj == null)
+            return;
+
+        m_iNpc = m_nearestObj.GetComponent<INPC>();
+        m_iNpc.DoInteraction();
     }
 
     GameObject FindNearestObj(Collider[] colls)
@@ -57,9 +47,13 @@ public class InteractionManager : MonoBehaviour
                 {
                     nearestDist = dist;
                     nearestObj = coll.gameObject;
-                    m_npcType = nearestObj.GetComponent<NPC>().m_npcType;
                 }
             }
+        }
+
+        if (nearestObj == null)
+        {
+            Debug.Log("No nearest object found.");
         }
 
         return nearestObj;
