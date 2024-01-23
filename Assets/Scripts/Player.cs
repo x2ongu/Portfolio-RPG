@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     Camera m_mainCam;
 
     Vector3 m_movePoint;
+    Vector3 m_rollPoint;
 
     [SerializeField, Header("캐릭터 이동속도")]
     private float m_speed = 5f;
@@ -23,6 +24,10 @@ public class Player : MonoBehaviour
     private float m_attackRange = 5;
     private float m_attackRate = 1f;
     private float m_time;
+    private float m_rollTime = -5f;
+    [SerializeField, Header("구르기 재사용 대기 시간")]
+    private float m_rollDuration = 5f;
+
     [SerializeField, Header("캐릭터 체력")]
     private int m_maxHp = 100;
     private int m_curHp;
@@ -44,29 +49,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse1) && m_isMove)
-        {
-            Ray ray = m_mainCam.ScreenPointToRay(Input.mousePosition);
-
-            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red);
-
-            if (Physics.Raycast(ray, out RaycastHit raycastHit))
-            {
-                m_movePoint = raycastHit.point;
-
-                if (Vector3.Distance(transform.position, m_movePoint) > 0.1f)
-                {                    
-                    m_navAgent.SetDestination(m_movePoint);
-                    m_anim.SetFloat("Speed", m_speed);
-
-                    if (m_navAgent.remainingDistance <= m_navAgent.stoppingDistance)
-                        m_anim.SetFloat("Speed", 0f);
-                }
-            }
-        }
-
         m_time += Time.deltaTime;
-
         if (Input.GetKey(KeyCode.Mouse0))
         {
             if (m_time > m_attackRate)
@@ -82,27 +65,44 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (Input.GetKey(KeyCode.Mouse1) && m_isMove)
+        {
+            Ray ray = m_mainCam.ScreenPointToRay(Input.mousePosition);
+
+            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red);
+
+            if (Physics.Raycast(ray, out RaycastHit raycastHit))
+            {
+                m_movePoint = raycastHit.point;
+
+                if (Vector3.Distance(transform.position, m_movePoint) > 0.1f)
+                {
+                    m_navAgent.SetDestination(m_movePoint);
+                    m_anim.SetFloat("Speed", m_speed);
+                }
+            }
+        }
+               
         if (Input.GetKeyDown(KeyCode.G))
         {
             m_interManager.ReturnSelectedNPC();
         }
 
+        m_rollTime += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(Roll());
+            if (m_rollTime > m_rollDuration || m_rollTime < 0f)
+            {
+                StartCoroutine(Roll());
+                m_rollTime = 0f;
+            }
         }
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
-        //if (Vector3.Distance(transform.position, m_movePoint) > 0.1f)
-        //{
-        //    m_anim.SetFloat("Speed", m_speed);
-        //    m_navAgent.SetDestination(m_movePoint);
-
-        //    if (m_navAgent.remainingDistance <= m_navAgent.stoppingDistance)
-        //        m_anim.SetFloat("Speed", 0f);
-        //}
+        if (m_navAgent.remainingDistance <= m_navAgent.stoppingDistance)
+            m_anim.SetFloat("Speed", 0f);
     }
 
     public void TakeDamage(float damage)
@@ -129,10 +129,10 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHit))
         {
             m_navAgent.ResetPath();
-            m_movePoint = raycastHit.point;
+            m_rollPoint = raycastHit.point;
         }
 
-        Vector3 dir = m_movePoint - transform.position;
+        Vector3 dir = m_rollPoint - transform.position;
         Vector3 dest = transform.position + dir.normalized * m_rollDist;
 
         m_navAgent.SetDestination(dest);

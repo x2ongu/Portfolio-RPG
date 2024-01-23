@@ -53,7 +53,7 @@ public class InteractionManager : MonoBehaviour
 
         if (nearestObj == null)
         {
-            Debug.Log("No nearest object found.");
+            //Debug.Log("No nearest object found.");
         }
 
         return nearestObj;
