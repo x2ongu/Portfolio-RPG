@@ -18,8 +18,6 @@ public class Player : MonoBehaviour
     public Camera m_mainCam;
     #endregion
 
-    Vector3 m_attackPoint;
-
     #region Player Info
     [SerializeField, Header("캐릭터 공격력")]
     private float m_damage = 5f;
@@ -38,9 +36,6 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public float m_rollDist = 10f;
     #endregion
-
-    private bool m_isMove = true;
-    private bool m_isAttackMode = false;
 
     #region Property
     public float Damage { get { return m_damage; } set { m_damage = value; } }
@@ -83,44 +78,5 @@ public class Player : MonoBehaviour
         m_curHp -= Mathf.RoundToInt(damage);
         Debug.Log("받은 피해 :" + Mathf.RoundToInt(damage));
         Debug.Log("현재 체력 : " + m_curHp);
-    }
-
-    public IEnumerator Attack()
-    {
-        Ray ray = m_mainCam.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, LayerMask.GetMask("Ground")))
-        {
-            m_navAgent.ResetPath();
-            m_attackPoint = raycastHit.point;
-        }
-
-        Vector3 dir = m_attackPoint - transform.position;
-        Vector3 dest = transform.position + dir.normalized * 0.5f;
-
-        transform.forward = dest;
-        m_navAgent.SetDestination(dest);
-        m_animEvent.m_anim.SetTrigger("Attack");
-        m_animEvent.m_anim.SetBool("IsReadyToAttack", true);
-        m_animEvent.m_anim.speed = 1.8f;
-        m_isMove = false;
-        m_isAttackMode = true;
-
-        yield return new WaitForSeconds(2f);
-
-        m_animEvent.m_anim.speed = 1f;
-        m_navAgent.speed = m_speed;
-        m_isMove = true;
-        m_isAttackMode = false;
-
-        yield return new WaitForSeconds(5f);
-
-        m_animEvent.m_anim.SetBool("IsReadyToAttack", false);
-        m_isAttackMode = false;
-        if (!m_isAttackMode)
-        {
-            m_animEvent.m_anim.Play("Disarm", 1, 0f);
-            m_animEvent.m_anim.SetLayerWeight(1, 1);
-        }
     }
 }

@@ -11,6 +11,12 @@ public class InputManager : MonoBehaviour
 
     public void GetKey_MouseLeft()
     {
+        //if (Input.GetKey(KeyCode.Mouse0))
+        //{
+        //    GameManager.Inst.m_player.m_animEvent.m_anim.SetTrigger("Attack");
+        //    m_attacktime = 0f;
+        //}
+
         m_attacktime += Time.deltaTime;
         if (Input.GetKey(KeyCode.Mouse0))
         {

@@ -1831,7 +1831,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.44175175, y: -0.000000015436491, z: 0.000000007600951, w: 0.8971374}
+  m_LocalRotation: {x: 0.44175175, y: 0.000000015436479, z: -0.000000007600946, w: 0.8971374}
   m_LocalPosition: {x: 0, y: 14.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2367,7 +2367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437655054}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.44175175, y: -0.000000015436491, z: 0.000000007600951, w: 0.8971374}
+  m_LocalRotation: {x: 0.44175175, y: 0.000000015436479, z: -0.000000007600946, w: 0.8971374}
   m_LocalPosition: {x: 0, y: 14.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2601,15 +2601,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433a6eb02742d9f4aa6da970239f8736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_animEvent: {fileID: 0}
+  m_interManager: {fileID: 0}
+  m_inputManager: {fileID: 0}
   m_navAgent: {fileID: 0}
   m_mainCam: {fileID: 0}
+  m_damage: 5
+  m_attackRate: 0.5
   m_speed: 10
+  m_maxHp: 100
+  m_rollDuration: 5
   m_rollSpeed: 25
   m_rollDist: 15
-  m_damage: 5
-  m_attackRate: 2
-  m_rollDuration: 5
-  m_maxHp: 100
 --- !u!195 &1807601928
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6377,6 +6380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_anim: {fileID: 0}
   m_isContinueComboAttack: 0
+  m_isAttack: 0
   m_isMove: 0
 --- !u!4 &4548762040260853289
 Transform:
