@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\FSM\IFSMState.cs" />
     <Compile Include="Assets\Scripts\FSM\FSM.cs" />
+    <Compile Include="Assets\Scripts\AnimationEvent.cs" />
     <Compile Include="Assets\Scripts\EnemyState\StateTrace.cs" />
     <Compile Include="Assets\Scripts\ItemData\ItemData.cs" />
     <Compile Include="Assets\Scripts\EnemyState\StateReturn.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\NPC\ItemMerchant.cs" />
     <Compile Include="Assets\Scripts\InteractionManager.cs" />
     <Compile Include="Assets\Scripts\NPC\RepaetQuestNPC.cs" />
+    <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Scripts\NPC\NPC.cs" />
   </ItemGroup>
   <ItemGroup>

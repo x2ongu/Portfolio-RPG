@@ -222,7 +222,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6929400761947323286}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 100
@@ -274,5 +274,6 @@ MonoBehaviour:
   m_itemDatas:
   - {fileID: 11400000, guid: 33a7f40611f0f8a4cbf649d4a46114e9, type: 2}
   - {fileID: 11400000, guid: c65592746f13ca544951546438ba70f9, type: 2}
+  m_gold: {fileID: 0}
   m_spawnPoint: {fileID: 0}
   m_damage: 5
