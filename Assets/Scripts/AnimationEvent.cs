@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AnimationEvent : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class AnimationEvent : MonoBehaviour
     Vector3 m_rollPoint;
     Vector3 m_attackPoint;
 
-    public bool m_isContinueComboAttack;
     public bool m_isAttack;
     public bool m_isMove;
 
@@ -18,7 +18,6 @@ public class AnimationEvent : MonoBehaviour
     {
         m_anim = GetComponent<Animator>();
 
-        m_isContinueComboAttack = false;
         m_isAttack = false;
         m_isMove = true;
     }
@@ -31,17 +30,23 @@ public class AnimationEvent : MonoBehaviour
         }
     }
 
+    public void SetAttackAnimationSpeed()
+    {
+        m_anim.speed = 2f;
+    }
+
+    public void CheckEndIsAttack()
+    {
+        m_isAttack = false;
+    }
+
     public void CheckStartComboAttack()
     {
-        m_anim.speed = 1.8f;
         m_anim.SetBool("Combo", true);
         m_anim.SetBool("IsReadyToAttack", true);
 
-        m_isContinueComboAttack = false;
         m_isAttack = true;
-        m_isMove = false;
 
-        Attack();
         if (m_coroutine != null)
             StopCoroutine(m_coroutine);
     }
@@ -51,7 +56,6 @@ public class AnimationEvent : MonoBehaviour
         m_anim.speed = 1f;
         m_anim.SetBool("Combo", false);
 
-        m_isAttack = false;
         m_isMove = true;
 
         m_coroutine = StartCoroutine(IsReadyToAttack());
@@ -61,7 +65,7 @@ public class AnimationEvent : MonoBehaviour
     {
         m_anim.speed = 1.4f;
         m_isMove = false;
-        Roll();
+        StartCoroutine(Roll());
     }
 
     public void RollFowardEnd()
@@ -71,17 +75,45 @@ public class AnimationEvent : MonoBehaviour
         m_isMove = true;
         GameManager.Inst.m_player.m_navAgent.speed = GameManager.Inst.m_player.m_speed;
     }
-
-    private void Roll()
+    
+    public void Attack()
     {
         Ray ray = GameManager.Inst.m_player.m_mainCam.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, LayerMask.GetMask("Ground")))
         {
-            GameManager.Inst.m_player.m_navAgent.ResetPath();
+            m_attackPoint = raycastHit.point;
+            m_attackPoint.y = transform.position.y;
+        }
 
+        Vector3 dir = m_attackPoint - transform.position;
+        Vector3 dest = transform.position + dir.normalized * 10f;
+
+        if (!m_isAttack)
+        {
+            GameManager.Inst.m_player.transform.forward = dest; // 이렇게 정면을 관리하면 순간이동 함...
+            GameManager.Inst.m_player.m_navAgent.SetDestination(dest);
+        }
+    }
+
+    private IEnumerator Roll()
+    {
+        Ray ray = GameManager.Inst.m_player.m_mainCam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, LayerMask.GetMask("Pivot")))
+        {
             m_rollPoint = raycastHit.point;
-            m_rollPoint.y += 0.092f;
+            m_rollPoint.y = transform.position.y;
+
+            Ray fixedRay = new Ray(raycastHit.point, -Vector3.up);
+            Debug.DrawRay(fixedRay.origin, fixedRay.direction * 100f, Color.magenta);
+
+            if (Physics.Raycast(fixedRay, out RaycastHit fixedRaycast, Mathf.Infinity, LayerMask.GetMask("Pivot")))
+            {
+                m_rollPoint = fixedRaycast.point;
+                m_rollPoint.y = transform.position.y;
+            }
+            
         }
 
         Vector3 dir = m_rollPoint - transform.position;
@@ -91,25 +123,15 @@ public class AnimationEvent : MonoBehaviour
 
         GameManager.Inst.m_player.m_navAgent.SetDestination(dest);
         GameManager.Inst.m_player.m_navAgent.speed = GameManager.Inst.m_player.m_rollSpeed;
-    }
 
-    private void Attack()
-    {
-        Ray ray = GameManager.Inst.m_player.m_mainCam.ScreenPointToRay(Input.mousePosition);
+        yield return null;
 
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, LayerMask.GetMask("Ground")))
-        {
-            GameManager.Inst.m_player.m_navAgent.ResetPath();
-
-            m_attackPoint = raycastHit.point;
-            m_attackPoint.y += 0.092f;
-        }
-
-        Vector3 dir = m_attackPoint - transform.position;
-        Vector3 dest = transform.position + dir.normalized * 0.5f;
-
-        //GameManager.Inst.m_player.transform.forward = dest; // 이렇게 정면을 관리하면 순간이동 함...
-        GameManager.Inst.m_player.m_navAgent.SetDestination(dest);
+        //float dist = Vector3.Distance(transform.position, dest);
+        //Debug.Log("dist : " + dist + " / 남은 거리 : " + GameManager.Inst.m_player.m_navAgent.remainingDistance);
+        //if (dist + 0.1f <= GameManager.Inst.m_player.m_navAgent.remainingDistance)
+        //{
+        //    GameManager.Inst.m_player.m_navAgent.ResetPath();
+        //}
     }
 
     IEnumerator IsReadyToAttack()
