@@ -11,7 +11,6 @@ public class StateReturn : FSMSingleton<StateReturn>, IFSMState<StateManager>
         if (Vector3.Distance(e.m_spawnPoint.position, e.transform.position) > 0.1f)
         {
             e.MoveReturn(e.m_spawnPoint.position);
-            e.Rotate(e.m_spawnPoint.position);
         }
         else
             e.ChangeState(StateStay.Instance);

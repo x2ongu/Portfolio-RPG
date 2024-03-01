@@ -14,8 +14,10 @@ public class StateStay : FSMSingleton<StateStay>, IFSMState<StateManager>
     {
         if (e.m_target != null)
         {
-            if (e.IsCloseToTarget(e.m_target.position, e.m_searchRange))
+            if (e.IsCloseToTarget(e.m_target.position, e.m_searchRange) && e.GetRemainingDistance(e.m_target) <= e.m_searchRange)
+            {
                 e.ChangeState(StateTrace.Instance);
+            }
         }
     }
 

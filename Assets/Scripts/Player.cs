@@ -25,16 +25,14 @@ public class Player : MonoBehaviour
     [SerializeField, Header("캐릭터 공격속도")]
     public float m_attackRate = 2f;
     [SerializeField, Header("캐릭터 이동속도")]
-    public float m_speed = 5f;
+    public float m_speed = 10f;
     [SerializeField, Header("캐릭터 최대 체력")]
     private int m_maxHp = 100;
     private int m_curHp;
 
-    [SerializeField, Header("구르기 재사용 대기 시간")]
+    [SerializeField, Header("Roll Info")]
     public float m_rollDuration = 5f;
-    [HideInInspector]
-    public float m_rollSpeed = 15f;
-    [HideInInspector]
+    public float m_rollSpeed = 20f;
     public float m_rollDist = 10f;
     #endregion
 
@@ -49,7 +47,7 @@ public class Player : MonoBehaviour
         m_animEvent = GetComponentInChildren<AnimationEvent>();
         m_interManager = GetComponent<InteractionManager>();
         m_inputManager = GetComponent<InputManager>();
-        m_navAgent = GetComponentInChildren<NavMeshAgent>();
+        m_navAgent = GetComponent<NavMeshAgent>();
         #endregion
 
         m_navAgent.speed = m_speed;
@@ -70,8 +68,11 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (m_navAgent.remainingDistance <= m_navAgent.stoppingDistance)
-            m_animEvent.m_anim.SetFloat("Speed", 0f);
+        if (m_animEvent.m_isMove)
+        {
+            if (m_navAgent.remainingDistance <= m_navAgent.stoppingDistance)
+                m_animEvent.m_anim.SetFloat("Speed", 0f);
+        }
     }
 
     public void TakeDamage(float damage)

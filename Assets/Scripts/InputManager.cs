@@ -19,8 +19,8 @@ public class InputManager : MonoBehaviour
 
             if (m_attacktime > GameManager.Inst.m_player.m_attackRate || m_attacktime < 0f)
             {
-                GameManager.Inst.m_player.m_animEvent.m_anim.SetTrigger("Attack");
                 GameManager.Inst.m_player.m_animEvent.Attack();
+                GameManager.Inst.m_player.m_animEvent.m_anim.SetTrigger("Attack");
                 GameManager.Inst.m_player.m_animEvent.m_isMove = false;
                 m_attacktime = 0f;
             }
@@ -35,23 +35,25 @@ public class InputManager : MonoBehaviour
 
             Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red);
 
-            if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, LayerMask.GetMask("Pivot")))
+            if (Physics.Raycast(ray, out RaycastHit groundHit, Mathf.Infinity, LayerMask.GetMask("Ground")))
             {
-                m_movePoint = raycastHit.point;
-
-                Ray fixedRay = new Ray(raycastHit.point, -Vector3.up);
-                Debug.DrawRay(fixedRay.origin, fixedRay.direction * 100f, Color.magenta);
-
-                if (Physics.Raycast(fixedRay, out RaycastHit fixedRaycast, Mathf.Infinity, LayerMask.GetMask("Pivot")))
-                {                    
-                    m_movePoint = fixedRaycast.point;
-                }                
-
-                if (Vector3.Distance(transform.position, m_movePoint) > 0.1f && GameManager.Inst.m_player.m_animEvent.m_isMove)
+                m_movePoint = groundHit.point;
+                Debug.Log("Ground Hit");
+            }
+            else if (Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("BackGround")))
+            {
+                Debug.Log("BackGround Hit");
+                if (Physics.Raycast(ray, out RaycastHit pivotHit, Mathf.Infinity, LayerMask.GetMask("Pivot")))
                 {
-                    GameManager.Inst.m_player.m_navAgent.SetDestination(m_movePoint);
-                    GameManager.Inst.m_player.m_animEvent.m_anim.SetFloat("Speed", GameManager.Inst.m_player.m_speed);
+                    m_movePoint = pivotHit.point;
+                    Debug.Log("Pivot Hit");
                 }
+            }
+
+            if (Vector3.Distance(transform.position, m_movePoint) > 0.1f && GameManager.Inst.m_player.m_animEvent.m_isMove)
+            {
+                GameManager.Inst.m_player.m_navAgent.SetDestination(m_movePoint);
+                GameManager.Inst.m_player.m_animEvent.m_anim.SetFloat("Speed", GameManager.Inst.m_player.m_speed);
             }
         }
     }
@@ -63,6 +65,7 @@ public class InputManager : MonoBehaviour
         {
             if (m_rollTime > GameManager.Inst.m_player.m_rollDuration || m_rollTime < 0f)
             {
+                GameManager.Inst.m_player.m_animEvent.Roll();
                 GameManager.Inst.m_player.m_animEvent.m_anim.SetTrigger("Roll");
                 m_rollTime = 0f;
             }

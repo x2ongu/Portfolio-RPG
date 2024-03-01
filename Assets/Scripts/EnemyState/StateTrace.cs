@@ -11,7 +11,6 @@ public class StateTrace : FSMSingleton<StateTrace>, IFSMState<StateManager>
         if (e.IsCloseToTarget(e.m_spawnPoint.position, e.m_traceRange))
         {
             e.Move(e.m_target.position);
-            e.Rotate(e.m_target.position);
 
             if (e.IsCloseToTarget(e.m_target.position, e.m_attackRange))
                 e.ChangeState(StateAttack.Instance);

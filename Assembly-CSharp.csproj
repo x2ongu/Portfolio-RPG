@@ -89,6 +89,9 @@
     <Compile Include="Assets\Scripts\NPC\NPC.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Z-Resource\CastlePack\Prefabs\readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.16f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
       <Private>False</Private>

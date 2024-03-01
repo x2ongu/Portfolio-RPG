@@ -10,15 +10,14 @@ public class AnimationEvent : MonoBehaviour
 
     Vector3 m_rollPoint;
     Vector3 m_attackPoint;
+    Vector3 m_attackMousePoint;
 
-    public bool m_isAttack;
     public bool m_isMove;
 
     private void Awake()
     {
         m_anim = GetComponent<Animator>();
 
-        m_isAttack = false;
         m_isMove = true;
     }
 
@@ -30,27 +29,41 @@ public class AnimationEvent : MonoBehaviour
         }
     }
 
-    public void SetAttackAnimationSpeed()
-    {
-        m_anim.speed = 2f;
-    }
 
-    public void CheckEndIsAttack()
+    public void Attack()
     {
-        m_isAttack = false;
-    }
+        Ray ray = GameManager.Inst.m_player.m_mainCam.ScreenPointToRay(Input.mousePosition);
 
+        if (Physics.Raycast(ray, out RaycastHit groundHit, Mathf.Infinity, LayerMask.GetMask("Ground")))
+        {
+            m_attackMousePoint = groundHit.point;
+            m_attackMousePoint.y = transform.position.y;
+        }
+        else if (Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("BackGround")))
+        {
+            if (Physics.Raycast(ray, out RaycastHit pivotHit, Mathf.Infinity, LayerMask.GetMask("Pivot")))
+            {
+                m_attackMousePoint = pivotHit.point;
+                m_attackMousePoint.y = transform.position.y;
+            }
+        }
+
+        Vector3 dir = m_attackMousePoint - transform.position;
+        m_attackPoint = transform.position + dir.normalized * 10f;
+    }
     public void CheckStartComboAttack()
     {
         m_anim.SetBool("Combo", true);
         m_anim.SetBool("IsReadyToAttack", true);
 
-        m_isAttack = true;
+        m_anim.speed = 2f;
+        m_isMove = false;
+
+        GameManager.Inst.m_player.transform.forward = m_attackPoint; // 이렇게 정면을 관리하면 순간이동 함... 근데 해도 될 듯?
 
         if (m_coroutine != null)
             StopCoroutine(m_coroutine);
     }
-
     public void CheckEndComboAttack()
     {
         m_anim.speed = 1f;
@@ -59,81 +72,7 @@ public class AnimationEvent : MonoBehaviour
         m_isMove = true;
 
         m_coroutine = StartCoroutine(IsReadyToAttack());
-    }
-
-    public void RollFowardStart()
-    {
-        m_anim.speed = 1.4f;
-        m_isMove = false;
-        StartCoroutine(Roll());
-    }
-
-    public void RollFowardEnd()
-    {
-        m_anim.speed = 1f;
-        m_anim.SetFloat("Speed", 0f);
-        m_isMove = true;
-        GameManager.Inst.m_player.m_navAgent.speed = GameManager.Inst.m_player.m_speed;
-    }
-    
-    public void Attack()
-    {
-        Ray ray = GameManager.Inst.m_player.m_mainCam.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, LayerMask.GetMask("Ground")))
-        {
-            m_attackPoint = raycastHit.point;
-            m_attackPoint.y = transform.position.y;
-        }
-
-        Vector3 dir = m_attackPoint - transform.position;
-        Vector3 dest = transform.position + dir.normalized * 10f;
-
-        if (!m_isAttack)
-        {
-            GameManager.Inst.m_player.transform.forward = dest; // 이렇게 정면을 관리하면 순간이동 함...
-            GameManager.Inst.m_player.m_navAgent.SetDestination(dest);
-        }
-    }
-
-    private IEnumerator Roll()
-    {
-        Ray ray = GameManager.Inst.m_player.m_mainCam.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, LayerMask.GetMask("Pivot")))
-        {
-            m_rollPoint = raycastHit.point;
-            m_rollPoint.y = transform.position.y;
-
-            Ray fixedRay = new Ray(raycastHit.point, -Vector3.up);
-            Debug.DrawRay(fixedRay.origin, fixedRay.direction * 100f, Color.magenta);
-
-            if (Physics.Raycast(fixedRay, out RaycastHit fixedRaycast, Mathf.Infinity, LayerMask.GetMask("Pivot")))
-            {
-                m_rollPoint = fixedRaycast.point;
-                m_rollPoint.y = transform.position.y;
-            }
-            
-        }
-
-        Vector3 dir = m_rollPoint - transform.position;
-        Debug.Log("마우스 위치 : " + m_rollPoint + " / 플레이어 위치 : " + transform.position);
-        Vector3 dest = transform.position + dir.normalized * GameManager.Inst.m_player.m_rollDist;
-        Debug.Log("마우스 dir.normalized : " + dir.normalized + " / dest : " + dest);
-
-        GameManager.Inst.m_player.m_navAgent.SetDestination(dest);
-        GameManager.Inst.m_player.m_navAgent.speed = GameManager.Inst.m_player.m_rollSpeed;
-
-        yield return null;
-
-        //float dist = Vector3.Distance(transform.position, dest);
-        //Debug.Log("dist : " + dist + " / 남은 거리 : " + GameManager.Inst.m_player.m_navAgent.remainingDistance);
-        //if (dist + 0.1f <= GameManager.Inst.m_player.m_navAgent.remainingDistance)
-        //{
-        //    GameManager.Inst.m_player.m_navAgent.ResetPath();
-        //}
-    }
-
+    }            
     IEnumerator IsReadyToAttack()
     {
         yield return new WaitForSeconds(10f);
@@ -141,5 +80,47 @@ public class AnimationEvent : MonoBehaviour
         m_anim.SetBool("IsReadyToAttack", false);
         m_anim.Play("Disarm", 1, 0f);
         m_anim.SetLayerWeight(1, 1);
+    }
+
+
+    public void Roll()
+    {
+        m_isMove = false;
+        GameManager.Inst.m_player.m_navAgent.speed = GameManager.Inst.m_player.m_rollSpeed;
+
+        Ray ray = GameManager.Inst.m_player.m_mainCam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit groundHit, Mathf.Infinity, LayerMask.GetMask("Ground")))
+        {
+            m_rollPoint = groundHit.point;
+            m_rollPoint.y = transform.position.y;
+            Debug.Log("Ground Hit");
+        }
+        else if (Physics.Raycast(ray, Mathf.Infinity, LayerMask.GetMask("BackGround")))
+        {
+            Debug.Log("BackGround Hit");
+            if (Physics.Raycast(ray, out RaycastHit pivotHit, Mathf.Infinity, LayerMask.GetMask("Pivot")))
+            {
+                m_rollPoint = pivotHit.point;
+                m_rollPoint.y = transform.position.y;
+                Debug.Log("Pivot Hit");
+            }
+        }
+
+        Vector3 rollDir = (m_rollPoint - transform.position).normalized;
+        Vector3 rollDest = transform.position + rollDir * GameManager.Inst.m_player.m_rollDist;
+
+        GameManager.Inst.m_player.m_navAgent.SetDestination(rollDest);
+    }
+    public void RollFowardStart()
+    {
+        m_anim.speed = 1.4f;
+    }
+    public void RollFowardEnd()
+    {
+        GameManager.Inst.m_player.m_navAgent.speed = GameManager.Inst.m_player.m_speed;
+        m_anim.speed = 1f;
+        m_anim.SetFloat("Speed", 0f);
+        m_isMove = true;
     }
 }

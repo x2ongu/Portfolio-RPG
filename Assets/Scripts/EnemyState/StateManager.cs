@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class StateManager : FSM<StateManager>
 {
     public NavMeshAgent m_navEnemy;
+    NavMeshPath m_path;
     public Transform m_target;
     public Transform m_spawnPoint;
     public Quaternion m_initialRot;
@@ -29,7 +30,7 @@ public class StateManager : FSM<StateManager>
     private void Awake()
     {
         m_navEnemy = GetComponent<NavMeshAgent>();
-        m_navEnemy.updateRotation = false;
+        m_path = new NavMeshPath();
         m_initialRot = transform.rotation;
     }
 
@@ -62,13 +63,16 @@ public class StateManager : FSM<StateManager>
         m_navEnemy.stoppingDistance = 0f;
     }
 
-    public void Rotate(Vector3 targetPos)
+    public float GetRemainingDistance(Transform trans)
     {
-        Vector3 dir = targetPos - transform.position;
-        dir = dir.normalized;
-        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+        m_navEnemy.CalculatePath(trans.position, m_path);
 
-        Quaternion targetRot = Quaternion.AngleAxis(angle, Vector3.up);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, m_rotSpeed * Time.deltaTime);
+        float remaningDist = 0f;
+        for (int i = 0; i < m_path.corners.Length - 1; i++)
+        {
+            remaningDist += Vector3.Distance(m_path.corners[i], m_path.corners[i + 1]);
+        }
+
+        return remaningDist;
     }
 }
